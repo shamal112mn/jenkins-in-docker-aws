@@ -11,10 +11,10 @@ DIR="backup/jenkins_home"
 echo
 echo "*** Running Jenkins backup ... ***"
 echo 
-if [ ! -d  "$DIR" ];  
+if [ ! -d  "~/$DIR" ];  
 then  
 echo "Creating  folder  -> backup/jenkins_home " 
-mkdir -p $DIR 
+mkdir -p ~/$DIR 
 fi 
 
 cd backup 
@@ -22,7 +22,8 @@ if [ -f "$BACKUP_FILE" ];
 then
   rm $BACKUP_FILE
 fi  
-rsync  -av  ../var/jenkins_home   . 
+rsync  -av  /var/lib/docker/volumes/jenkins_home   . 
+sudo chown -R ubuntu:ubuntu jenkins_home
 tar cvfz  $BACKUP_FILE  jenkins_home
 
 if [ -f "$BACKUP_FILE" ];
