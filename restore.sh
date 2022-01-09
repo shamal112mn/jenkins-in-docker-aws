@@ -5,15 +5,16 @@ DIRS3="s3bucket-jenkins-backup"
 BACKUP_FILE="jenkins-backup.tar.gz"
 BACKUP_OLD="jenkins-backup.tar.gz.old"
 DIR="backup"
+DIRV="/var/lib/docker/volumes"
 
 echo
 echo " *** Jenkins restore is running ... *** "
 echo
 
-if [ ! -d  "$DIR" ];  
+if [ ! -d  "~/$DIR" ];  
 then  
 echo "Creating  folder  -> backup" 
-mkdir -p $DIR 
+mkdir -p ~/$DIR 
 fi 
 
 cd backup
@@ -34,8 +35,8 @@ else
 fi 
 
 # sudo usermod -aG docker $USER 
-rm -rf ../var/jenkins_home/*
-cp -R jenkins_home/*  ../var/jenkins_home/
+sudo rm -rf $DIRV/jenkins_home/*
+sudo cp -R jenkins_home/*  $DIRV/jenkins_home/
 cd ..
 rm -rf backup
 
