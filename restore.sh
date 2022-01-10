@@ -8,6 +8,8 @@ DIR="backup"
 DIRV="/var/lib/docker/volumes"
 CONTAINER="myjenkins"
 
+cd 
+
 echo
 echo " *** Script is restoring JENKINS_HOME ... *** "
 echo
