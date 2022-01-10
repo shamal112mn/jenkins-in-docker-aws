@@ -8,12 +8,14 @@ DIR="backup"
 DIRV="/var/lib/docker/volumes"
 CONTAINER="myjenkins"
 
-cd 
+
 
 echo
 echo " *** Script is restoring JENKINS_HOME ... *** "
 echo
 
+cd 
+docker stop $CONTAINER
 if [ ! -d  "~/$DIR" ];  
 then  
 echo "Creating  folder  -> backup" 
