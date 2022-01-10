@@ -11,6 +11,8 @@ DIR="backup/jenkins_home"
 echo
 echo "*** Running Jenkins backup ... ***"
 echo 
+
+cd
 if [ ! -d  "~/$DIR" ];  
 then  
 echo "Creating  folder  -> backup/jenkins_home " 
