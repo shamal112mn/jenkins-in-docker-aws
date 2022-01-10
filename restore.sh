@@ -15,6 +15,7 @@ echo
 echo " *** Script is restoring JENKINS_HOME ... *** "
 echo
 
+cpwd=$PWD
 cd 
 docker stop $CONTAINER
 if [ ! -d  "~/$DIR" ];  
@@ -42,19 +43,14 @@ fi
 
 sudo usermod -aG docker $USER 
 sudo rm -rf $DIRV/jenkins_home/*
-echo "copy command "
-whoami
-pwd
 sudo cp -R jenkins_home/*  $DIRV/jenkins_home/
-pwd
-whoami
-echo "coppy complete "
 sudo chown -R $USER:$USER  $DIRV/jenkins_home
 cd ..
 rm -rf backup
 docker rm $CONTAINER
 docker run -d --name $CONTAINER -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts-jdk11
 
+cd $cpwd
 echo
 echo "*** Restore complete ***"
 echo
