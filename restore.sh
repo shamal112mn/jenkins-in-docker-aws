@@ -40,6 +40,7 @@ fi
 sudo usermod -aG docker $USER 
 sudo rm -rf $DIRV/jenkins_home/*
 sudo cp -R jenkins_home/*  $DIRV/jenkins_home/
+sudo chown -R $USER:$USER  $DIRV/jenkins_home
 cd ..
 rm -rf backup
 docker rm $CONTAINER
