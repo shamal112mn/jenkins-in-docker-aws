@@ -7,6 +7,7 @@ BACKUP_OLD="jenkins-backup.tar.gz.old"
 DIR="backup"
 DIRV="/var/lib/docker/volumes"
 CONTAINER="myjenkins"
+ 
 
 
 
@@ -41,7 +42,13 @@ fi
 
 sudo usermod -aG docker $USER 
 sudo rm -rf $DIRV/jenkins_home/*
+echo "copy command "
+whoami
+pwd
 sudo cp -R jenkins_home/*  $DIRV/jenkins_home/
+pwd
+whoami
+echo "coppy complete "
 sudo chown -R $USER:$USER  $DIRV/jenkins_home
 cd ..
 rm -rf backup
