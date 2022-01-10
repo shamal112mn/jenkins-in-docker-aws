@@ -10,8 +10,9 @@ DIR="backup/jenkins_home"
 
 echo
 echo "*** Running Jenkins backup ... ***"
-echo 
+echo
 
+cpwd=$PWD
 cd
 if [ ! -d  "~/$DIR" ];  
 then  
@@ -24,7 +25,7 @@ if [ -f "$BACKUP_FILE" ];
 then
   rm $BACKUP_FILE
 fi  
-rsync  -av  /var/lib/docker/volumes/jenkins_home   . 
+sudo rsync  -av  /var/lib/docker/volumes/jenkins_home   . 
 sudo chown -R ubuntu:ubuntu jenkins_home
 tar cvfz  $BACKUP_FILE  jenkins_home
 
@@ -48,8 +49,8 @@ count=$(aws s3 ls s3://$DIRS3 | wc -l )
 fi
 aws s3 sync .  s3://$DIRS3
 rm $BACKUP_FILE  
-cd ..
+cd $cpwd
 
 echo
 echo "****Jenkins backup complete ****"
- echo
+echo
