@@ -6,9 +6,10 @@ BACKUP_FILE="jenkins-backup.tar.gz"
 BACKUP_OLD="jenkins-backup.tar.gz.old"
 DIR="backup"
 DIRV="/var/lib/docker/volumes"
+CONTAINER="myjenkins"
 
 echo
-echo " *** Jenkins restore is running ... *** "
+echo " *** Script is restoring JENKINS_HOME ... *** "
 echo
 
 if [ ! -d  "~/$DIR" ];  
@@ -34,11 +35,13 @@ else
   tar xvf $BACKUP_FILE  
 fi 
 
-# sudo usermod -aG docker $USER 
+sudo usermod -aG docker $USER 
 sudo rm -rf $DIRV/jenkins_home/*
 sudo cp -R jenkins_home/*  $DIRV/jenkins_home/
 cd ..
 rm -rf backup
+docker rm $CONTAINER
+docker run -d --name $CONTAINER -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts-jdk11
 
 echo
 echo "*** Restore complete ***"
