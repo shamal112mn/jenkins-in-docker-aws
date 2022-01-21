@@ -15,5 +15,14 @@ backup.sh
 
 restore.sh
 
+to set the agent known_host key
+
+docker exec -ti myjenkins bash
+# check if file exist /var/jenkins_home/.ssh/known_hosts
+# then run command
+ssh-keyscan -H IP-of-agent  >>  /var/jenkins_home/.ssh/known_hosts
+
+# or just run below, just update IP
+docker exec myjenkins sh -c  "ssh-keyscan -H Agent-IP  >>  /var/jenkins_home/.ssh/known_hosts" 
 
 ```

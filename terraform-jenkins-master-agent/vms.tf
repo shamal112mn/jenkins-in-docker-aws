@@ -57,10 +57,11 @@ resource "null_resource" "master" {
         host = "${aws_instance.master.public_ip}"  
       } 
 
-      inline = [ 
-        "cd",
+      inline = [         
         "cp /tmp/master.sh /home/ubuntu/master.sh ",
-        "source /home/ubuntu/master.sh",
+        "cd",
+        "chmod +x master.sh",
+        "./master.sh",
       ]
     } 
 }
@@ -92,8 +93,9 @@ resource "null_resource" "agent" {
 
       inline = [ 
         "cp /tmp/agent.sh /home/ubuntu/agent.sh ",
-        "cd ",
-        "source /home/ubuntu/agent.sh",
+        "cd",
+        "chmod +x agent.sh",
+        "./agent.sh",
       ]
     } 
 } 
