@@ -62,6 +62,7 @@ resource "null_resource" "master" {
         "cd",
         "chmod +x master.sh",
         "./master.sh",
+        # "docker exec myjenkins sh -c  'ssh-keyscan -H ${aws_instance.agent.public_ip}  >>  /var/jenkins_home/.ssh/known_hosts' "
       ]
     } 
 }
