@@ -16,8 +16,10 @@ echo " *** Script is restoring JENKINS_HOME ... *** "
 echo
 
  
-cd 
+echo " Stopping and removing $CONTAINER container ... " 
 docker stop $CONTAINER
+docker rm $CONTAINER
+cd 
 if [ ! -d  "~/$DIR" ];  
 then  
 echo "Creating  folder  -> backup" 
@@ -47,7 +49,6 @@ sudo cp -R jenkins_home/*  $DIRV/jenkins_home/
 sudo chown -R $USER:$USER  $DIRV/jenkins_home
 cd ..
 rm -rf backup
-docker rm $CONTAINER
 docker run -d --name $CONTAINER -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts-jdk11
 
 cd
