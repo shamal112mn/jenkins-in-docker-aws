@@ -19,8 +19,8 @@ git clone https://github.com/shamal112mn/jenkins-in-docker-aws.git
 if [ ! -d  "~/.ssh" ]; 
     then mkdir ~/.ssh 
 fi
-
-cat ~/jenkins-in-docker-aws/extra_key.pub  >> ~/.ssh/authorized_keys
+cd
+cat jenkins-in-docker-aws/extra_key.pub  >> .ssh/authorized_keys
  
 
 echo " *All commands executed successfuly!* "

@@ -48,7 +48,8 @@ count=$(aws s3 ls s3://$DIRS3 | wc -l )
   fi  
 fi
 aws s3 sync .  s3://$DIRS3
-rm -rf ~/backup 
+cd 
+rm -rf backup 
 cd 
 
 echo 
