@@ -12,7 +12,7 @@ echo
 echo "*** Running Jenkins backup ... ***"
 echo
 
-cpwd=$PWD
+
 cd
 if [ ! -d  "~/$DIR" ];  
 then  
@@ -49,8 +49,8 @@ count=$(aws s3 ls s3://$DIRS3 | wc -l )
 fi
 aws s3 sync .  s3://$DIRS3
 rm -rf ~/backup 
-cd $cpwd
+cd 
 
-echo
+echo 
 echo "****Jenkins backup complete ****"
-echo
+echo 

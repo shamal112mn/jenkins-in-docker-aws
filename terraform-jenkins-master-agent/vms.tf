@@ -57,11 +57,9 @@ resource "null_resource" "master" {
         host = "${aws_instance.master.public_ip}"  
       } 
 
-      inline = [         
-        "cp /tmp/master.sh /home/ubuntu/master.sh ",
-        "cd",
-        "chmod +x master.sh",
-        "./master.sh",
+      inline = [ 
+        "chmod +x /tmp/master.sh",
+        "/tmp/master.sh args",
         # "docker exec myjenkins sh -c  'ssh-keyscan -H ${aws_instance.agent.public_ip}  >>  /var/jenkins_home/.ssh/known_hosts' "
       ]
     } 
@@ -92,11 +90,9 @@ resource "null_resource" "agent" {
         host = "${aws_instance.agent.public_ip}"  
       } 
 
-      inline = [ 
-        "cp /tmp/agent.sh /home/ubuntu/agent.sh ",
-        "cd",
-        "chmod +x agent.sh",
-        "./agent.sh",
+      inline = [
+        "chmod +x /tmp/agent.sh",
+        "/tmp/agent.sh args",
       ]
     } 
 } 

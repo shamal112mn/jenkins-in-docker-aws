@@ -16,7 +16,7 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 cd 
 git clone https://github.com/shamal112mn/jenkins-in-docker-aws.git
 
-mkdir ~/.ssh 
+if [ ! -d  "~/.ssh" ]; then mkdir ~/.ssh fi
 cd .ssh
 cat ~/jenkins-in-docker-aws/extra_key.pub  >> authorized_keys
  
