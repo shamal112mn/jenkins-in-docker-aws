@@ -9,12 +9,14 @@ sleep 10
 cd 
 git clone https://github.com/shamal112mn/jenkins-in-docker-aws.git
  
-if [ ! -d  "~/.ssh" ]; then mkdir ~/.ssh fi
+if [ ! -d  "~/.ssh" ]; 
+    then mkdir ~/.ssh 
+fi
 cp $DIR/extra_key  $SSH/id_rsa
 chmod 400 $SSH/id_rsa
 cp $DIR/extra_key.pub  $SSH/id_rsa.pub
 chmod 644 $SSH/id_rsa.pub
 source  $DIR/restore.sh
  
-echo " *all commands executed successfuly!* "
+echo " *All commands executed successfuly!* "
  
