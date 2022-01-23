@@ -47,22 +47,7 @@ resource "null_resource" "master" {
 
       source = "master.sh" 
       destination = "/tmp/master.sh"
-    }   
-
-    provisioner "remote-exec" { 
-      connection { 
-        type = "ssh" 
-        user = "ubuntu" 
-        private_key = "${file("~/.ssh/id_rsa")}" 
-        host = "${aws_instance.master.public_ip}"  
-      } 
-
-      inline = [ 
-        "chmod +x /tmp/master.sh",
-        "/tmp/master.sh args",
-        # "docker exec myjenkins sh -c  'ssh-keyscan -H ${aws_instance.agent.public_ip}  >>  /var/jenkins_home/.ssh/known_hosts' "
-      ]
-    } 
+    }
 }
 
 resource "null_resource" "agent" { 
@@ -80,20 +65,6 @@ resource "null_resource" "agent" {
 
       source = "agent.sh" 
       destination = "/tmp/agent.sh"     
-    }   
-
-    provisioner "remote-exec" { 
-      connection { 
-        type = "ssh" 
-        user = "ubuntu" 
-        private_key = "${file("~/.ssh/id_rsa")}" 
-        host = "${aws_instance.agent.public_ip}"  
-      } 
-
-      inline = [
-        "chmod +x /tmp/agent.sh",
-        "/tmp/agent.sh args",
-      ]
     } 
 } 
 
