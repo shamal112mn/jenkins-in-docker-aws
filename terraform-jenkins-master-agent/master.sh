@@ -28,4 +28,4 @@ chmod 644 $SSH/id_rsa.pub
 source  $DIR/restore.sh
  
 echo " *All commands executed successfuly!* "
- 
+ ye
