@@ -5,7 +5,8 @@ jenkins in docker for aws
 ```
 # Scripts will help to reduce time for recover Jenkins configuration
 
-1 cd into terraform-jenkins-master-agent/
+1  Set aws user with for terraform ENV variable: << export TF_VAR_profile="user_profile" >>
+   CD into terraform-jenkins-master-agent/
    use terraform apply to provision instances
 
 2  Connect with ssh to agent node
