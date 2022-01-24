@@ -49,6 +49,9 @@ docker exec -ti myjenkins bash
 # check if file exist /var/jenkins_home/.ssh/known_hosts
 # then run command
 ssh-keyscan -H IP-of-agent  >>  /var/jenkins_home/.ssh/known_hosts
- 
+
+docker exec myjenkins  bash -c "cat  /var/jenkins_home/secrets/initialAdminPassword" 
+
+docker exec myjenkins sh -c  "ssh-keyscan -H Jenkins-Agent-IP  >>  /var/jenkins_home/.ssh/known_hosts" 
 
 ```
